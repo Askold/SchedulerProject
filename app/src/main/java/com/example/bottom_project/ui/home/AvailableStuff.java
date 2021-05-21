@@ -9,8 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import com.example.bottom_project.MyEvent;
-import com.example.bottom_project.MyEventAdapter;
+import com.example.bottom_project.Models.MyWorker;
 import com.example.bottom_project.R;
 
 

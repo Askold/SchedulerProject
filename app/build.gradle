@@ -49,6 +49,8 @@ dependencies {
 
     implementation 'com.google.firebase:firebase-auth'
     implementation 'com.google.firebase:firebase-database'
+    implementation 'com.firebaseui:firebase-ui-auth:6.4.0'
+
     implementation 'com.android.support:design'
     implementation ('com.rengwuxian.materialedittext:library:2.0.+')
     implementation 'androidx.multidex:multidex:2.0.1'

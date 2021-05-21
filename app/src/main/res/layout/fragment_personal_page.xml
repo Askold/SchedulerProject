@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/image1"
+    tools:context=".ui.personalPage.PersonalPageFragment">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_centerHorizontal="true"
+    android:gravity="center"
+    android:layout_margin="10dp">
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:src="@tools:sample/avatars" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/emailField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Email"
+        android:text=""
+        android:textColor="@color/design_default_color_primary"
+        android:textColorHint="@color/design_default_color_primary"
+        android:textSize="20sp"
+
+        app:met_baseColor="@color/design_default_color_primary"
+        app:met_floatingLabel="highlight"
+        app:met_primaryColor="@color/design_default_color_primary"
+        app:met_singleLineEllipsis="true"
+        />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/nameField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Name"
+        android:text=""
+        android:textColor="@color/design_default_color_primary"
+        android:textColorHint="@color/design_default_color_primary"
+        android:textSize="20sp"
+
+        app:met_baseColor="@color/design_default_color_primary"
+        app:met_floatingLabel="highlight"
+        app:met_primaryColor="@color/design_default_color_primary"
+        app:met_singleLineEllipsis="true"
+        />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/surnameField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Surname"
+        android:text=""
+        android:textColor="@color/design_default_color_primary"
+        android:textColorHint="@color/design_default_color_primary"
+        android:textSize="20sp"
+
+        app:met_baseColor="@color/design_default_color_primary"
+        app:met_floatingLabel="highlight"
+        app:met_primaryColor="@color/design_default_color_primary"
+        app:met_singleLineEllipsis="true"
+        />
+
+
+
+</LinearLayout>
+</ScrollView>

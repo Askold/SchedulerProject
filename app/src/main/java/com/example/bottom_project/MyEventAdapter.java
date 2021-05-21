@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
+import com.example.bottom_project.Models.MyEvent;
+
 public class MyEventAdapter extends ArrayAdapter<MyEvent> {
     public MyEventAdapter(@NonNull Context context, @NonNull MyEvent[] objects) {
         super(context, R.layout.list_home, objects);

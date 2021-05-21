@@ -1,4 +1,4 @@
-package com.example.bottom_project.ui.notifications;
+package com.example.bottom_project.ui.personalPage;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

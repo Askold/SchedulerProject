@@ -1,8 +1,8 @@
-package com.example.bottom_project.ui.home;
+package com.example.bottom_project.Models;
 
 public class MyWorker {
-    String surname;
-    String name;
+    public String surname;
+    public String name;
 
     public MyWorker(String surname, String name){
         this.surname = surname;
