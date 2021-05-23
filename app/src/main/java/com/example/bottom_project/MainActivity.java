@@ -13,6 +13,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -21,7 +22,7 @@ import androidx.navigation.ui.NavigationUI;
 public class MainActivity extends AppCompatActivity {
 
     public static int SIGN_IN_CODE = 1;
-    private RelativeLayout activity_main;
+    private ConstraintLayout activity_main;
 
     FirebaseAuth auth;
     FirebaseDatabase db;

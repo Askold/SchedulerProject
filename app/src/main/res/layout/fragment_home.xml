@@ -14,10 +14,10 @@
         android:src="@drawable/new_event"
         android:tint="@color/design_default_color_primary"
         app:backgroundTint="@color/design_default_color_primary"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_marginRight="10dp"
-        android:layout_marginBottom="70dp"/>
+        android:layout_marginTop="500dp"
+        android:layout_alignParentEnd="true" />
 
     <ListView
         android:id="@+id/list"

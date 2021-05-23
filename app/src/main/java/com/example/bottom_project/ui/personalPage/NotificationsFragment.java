@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.bottom_project.R;
 
-public class PersonalPageFragment extends Fragment {
+public class NotificationsFragment extends Fragment {
 
     private NotificationsViewModel notificationsViewModel;
 
