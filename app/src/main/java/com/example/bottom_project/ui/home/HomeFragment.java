@@ -4,11 +4,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -18,8 +20,12 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.bottom_project.Models.MyEvent;
 import com.example.bottom_project.MyEventAdapter;
 import com.example.bottom_project.R;
+import com.firebase.ui.database.FirebaseListAdapter;
+import com.firebase.ui.database.FirebaseListOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
 public class HomeFragment extends Fragment {
@@ -27,7 +33,8 @@ public class HomeFragment extends Fragment {
     FloatingActionButton btnNewEvent;
     private HomeViewModel homeViewModel;
 
-    RelativeLayout rela;
+    private RelativeLayout rela;
+    private FirebaseListAdapter<MyEvent> adapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -44,23 +51,39 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        MyEvent[] events = makeEvents();
-        MyEventAdapter adapter = new MyEventAdapter(requireContext(), events);
-        ListView lv = (ListView) root.findViewById(R.id.list);
-        lv.setAdapter(adapter);
-        lv.setOnItemClickListener((parent, view, position, id) -> {
-            //int id =  ((MyEvent)parent.getItemAtPosition(position)).id;
-            Intent i = new Intent(Intent.ACTION_VIEW);
-            startActivity(i);
-        });
+        ListView listOfEvents = root.findViewById(R.id.list_of_events);
+        Query query = FirebaseDatabase.getInstance().getReference().child("Events");
+
+        FirebaseListOptions<MyEvent> options =
+                new FirebaseListOptions.Builder<MyEvent>()
+                        .setQuery(query, MyEvent.class)
+                        .setLayout(R.layout.list_events)
+                        .build();
+        adapter = new FirebaseListAdapter<MyEvent>(options) {
+            @Override
+            protected void populateView(@NonNull View v, @NonNull MyEvent model, int position) {
+                TextView place, name, date, time;
+                name = root.findViewById(R.id.name);
+                place = root.findViewById(R.id.place);
+                date = root.findViewById(R.id.date);
+                time = root.findViewById(R.id.time);
+
+                name.setText(model.getName());
+                time.setText(model.getTime());
+                place.setText(model.getPlace());
+                date.setText(model.getDate());
+            }
+        };
+
+        listOfEvents.setAdapter(adapter);
 
         return root;
     }
 
     private void setNewEvent() {
         AlertDialog.Builder dialog = new AlertDialog.Builder(requireContext());
-        dialog.setTitle("Авторизация");
-        dialog.setMessage("Введите данные для авторизации");
+        dialog.setTitle("Новое мероприятие");
+        dialog.setMessage("Введите данные нового мероприятия");
         LayoutInflater inflater = LayoutInflater.from(requireContext());
         View add_new_event = inflater.inflate(R.layout.add_event_window, null);
         dialog.setView(add_new_event);
@@ -97,20 +120,14 @@ public class HomeFragment extends Fragment {
                     Snackbar.make(rela, "Введите время", Snackbar.LENGTH_SHORT).show();
                     return;
                 }
-
+                FirebaseDatabase.getInstance().getReference().child("Events").setValue(
+                        new MyEvent(name.getText().toString(),
+                                place.getText().toString(),
+                                date.getText().toString(),
+                                time.getText().toString()));
             }
         });
         dialog.show();
     }
 
-    MyEvent[] makeEvents() {
-        String[] names = {"event1", "event2",  "event3", "event4","event5", "event6", "event7",  "event8", "event9","event10"};
-        MyEvent[] events = new MyEvent[10];
-        MyEvent event;
-        for (int i = 0; i < events.length; i++){
-            event = new MyEvent(names[i]);
-            events[i] = event;
-        }
-        return events;
-    }
 }

@@ -14,14 +14,14 @@ import com.example.bottom_project.Models.MyEvent;
 
 public class MyEventAdapter extends ArrayAdapter<MyEvent> {
     public MyEventAdapter(@NonNull Context context, @NonNull MyEvent[] objects) {
-        super(context, R.layout.list_home, objects);
+        super(context, R.layout.list_events, objects);
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         MyEvent event = getItem(position);
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_home, null);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_events, null);
         }
         ((TextView) convertView.findViewById(R.id.name)).setText(event.name);
         CheckBox ch = (CheckBox) convertView.findViewById(R.id.possible);
