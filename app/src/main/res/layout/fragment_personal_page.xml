@@ -6,20 +6,39 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/image1"
-    tools:context=".ui.personalPage.NotificationsFragment">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:layout_centerHorizontal="true"
-    android:gravity="center"
-    android:layout_margin="10dp">
+    tools:context=".ui.personalPage.PersonalPageFragment">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="10dp"
+        android:elevation="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        app:cardUseCompatPadding="true">
+
+
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:padding="15dp">
 
     <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="match_parent"
+        android:id="@+id/userPhoto"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:src="@tools:sample/avatars" />
+        tools:src="@tools:sample/avatars"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/userPhoto"
+        android:orientation="vertical"
+        android:layout_marginLeft="10dp">
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/emailField"
@@ -30,7 +49,6 @@
         android:textColor="@color/design_default_color_primary"
         android:textColorHint="@color/design_default_color_primary"
         android:textSize="20sp"
-
         app:met_baseColor="@color/design_default_color_primary"
         app:met_floatingLabel="highlight"
         app:met_primaryColor="@color/design_default_color_primary"
@@ -42,11 +60,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Name"
-        android:text=""
+        android:layout_below="@id/emailField"
         android:textColor="@color/design_default_color_primary"
         android:textColorHint="@color/design_default_color_primary"
         android:textSize="20sp"
-
         app:met_baseColor="@color/design_default_color_primary"
         app:met_floatingLabel="highlight"
         app:met_primaryColor="@color/design_default_color_primary"
@@ -62,14 +79,28 @@
         android:textColor="@color/design_default_color_primary"
         android:textColorHint="@color/design_default_color_primary"
         android:textSize="20sp"
-
         app:met_baseColor="@color/design_default_color_primary"
         app:met_floatingLabel="highlight"
         app:met_primaryColor="@color/design_default_color_primary"
+        android:layout_below="@id/nameField"
         app:met_singleLineEllipsis="true"
         />
+    </LinearLayout>
+    <Button
+        android:id="@+id/btnSignOut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="6dp"
+        android:layout_weight="1"
+        android:background="@drawable/btn_sign_in"
+        android:text="@string/btnSignOut"
+        android:textColor="@color/bot_color"
+        app:backgroundTint="#E4673AB7"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"/>
 
 
 
-</LinearLayout>
+</RelativeLayout>
+    </androidx.cardview.widget.CardView>
 </ScrollView>

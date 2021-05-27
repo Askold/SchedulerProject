@@ -1,27 +1,24 @@
 package com.example.bottom_project.ui.home;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bottom_project.Models.MyEvent;
-import com.example.bottom_project.MyEventAdapter;
 import com.example.bottom_project.R;
-import com.firebase.ui.database.FirebaseListAdapter;
-import com.firebase.ui.database.FirebaseListOptions;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.FirebaseDatabase;
@@ -34,7 +31,7 @@ public class HomeFragment extends Fragment {
     private HomeViewModel homeViewModel;
 
     private RelativeLayout rela;
-    private FirebaseListAdapter<MyEvent> adapter;
+    private FirebaseRecyclerAdapter adapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -51,33 +48,32 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        ListView listOfEvents = root.findViewById(R.id.list_of_events);
+        RecyclerView listOfEvents = root.findViewById(R.id.list_of_events);
+        listOfEvents.setLayoutManager(new LinearLayoutManager(requireContext()));
         Query query = FirebaseDatabase.getInstance().getReference().child("Events");
 
-        FirebaseListOptions<MyEvent> options =
-                new FirebaseListOptions.Builder<MyEvent>()
+        FirebaseRecyclerOptions<MyEvent> options =
+                new FirebaseRecyclerOptions.Builder<MyEvent>()
                         .setQuery(query, MyEvent.class)
-                        .setLayout(R.layout.list_events)
                         .build();
-        adapter = new FirebaseListAdapter<MyEvent>(options) {
-            @Override
-            protected void populateView(@NonNull View v, @NonNull MyEvent model, int position) {
-                TextView place, name, date, time;
-                name = root.findViewById(R.id.name);
-                place = root.findViewById(R.id.place);
-                date = root.findViewById(R.id.date);
-                time = root.findViewById(R.id.time);
-
-                name.setText(model.getName());
-                time.setText(model.getTime());
-                place.setText(model.getPlace());
-                date.setText(model.getDate());
-            }
-        };
-
+        adapter = new EventsAdapter(options);
         listOfEvents.setAdapter(adapter);
+        //adapter.startListening();
+
 
         return root;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        adapter.startListening();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        adapter.stopListening();
     }
 
     private void setNewEvent() {
@@ -120,7 +116,7 @@ public class HomeFragment extends Fragment {
                     Snackbar.make(rela, "Введите время", Snackbar.LENGTH_SHORT).show();
                     return;
                 }
-                FirebaseDatabase.getInstance().getReference().child("Events").setValue(
+                FirebaseDatabase.getInstance().getReference().child("Events").push().setValue(
                         new MyEvent(name.getText().toString(),
                                 place.getText().toString(),
                                 date.getText().toString(),

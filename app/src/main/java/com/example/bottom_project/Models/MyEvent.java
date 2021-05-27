@@ -7,6 +7,8 @@ public class MyEvent {
     private String date, time;
     public boolean possible = false;
 
+    MyEvent(){}
+
     public MyEvent(String name, String place, String date, String time) {
         this.name = name;
         this.place = place;

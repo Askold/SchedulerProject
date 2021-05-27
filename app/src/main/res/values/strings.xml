@@ -10,4 +10,5 @@
     <string name="enterText">Войдите в свою учетную запись или зарегистрируйтесь!</string>
     <string name="scheduler">Scheduler</string>
     <string name="descr">Планировщик событий и персонала</string>
+    <string name="btnSignOut">Выйти</string>
 </resources>
