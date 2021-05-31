@@ -28,15 +28,13 @@ import com.rengwuxian.materialedittext.MaterialEditText;
 public class HomeFragment extends Fragment {
 
     FloatingActionButton btnNewEvent;
-    private HomeViewModel homeViewModel;
 
-    private RelativeLayout rela;
+    private RelativeLayout relativeLayout;
     private FirebaseRecyclerAdapter adapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
+
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
         btnNewEvent = root.findViewById(R.id.btnNewEvent);
@@ -58,7 +56,6 @@ public class HomeFragment extends Fragment {
                         .build();
         adapter = new EventsAdapter(options);
         listOfEvents.setAdapter(adapter);
-        //adapter.startListening();
 
 
         return root;
@@ -101,19 +98,19 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 if (TextUtils.isEmpty(name.getText().toString())){
-                    Snackbar.make(rela, "Введите название", Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(relativeLayout, "Введите название", Snackbar.LENGTH_SHORT).show();
                     return;
                 }
                 if (TextUtils.isEmpty(place.getText().toString())){
-                    Snackbar.make(rela, "Введите место", Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(relativeLayout, "Введите место", Snackbar.LENGTH_SHORT).show();
                     return;
                 }
                 if (TextUtils.isEmpty(date.getText().toString())){
-                    Snackbar.make(rela, "Введите дату проведения", Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(relativeLayout, "Введите дату проведения", Snackbar.LENGTH_SHORT).show();
                     return;
                 }
                 if (TextUtils.isEmpty(time.getText().toString())){
-                    Snackbar.make(rela, "Введите время", Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(relativeLayout, "Введите время", Snackbar.LENGTH_SHORT).show();
                     return;
                 }
                 FirebaseDatabase.getInstance().getReference().child("Events").push().setValue(

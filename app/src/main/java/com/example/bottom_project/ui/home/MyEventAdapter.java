@@ -1,4 +1,4 @@
-package com.example.bottom_project;
+package com.example.bottom_project.ui.home;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import com.example.bottom_project.Models.MyEvent;
+import com.example.bottom_project.R;
 
 public class MyEventAdapter extends ArrayAdapter<MyEvent> {
     public MyEventAdapter(@NonNull Context context, @NonNull MyEvent[] objects) {

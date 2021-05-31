@@ -17,8 +17,10 @@
         app:backgroundTint="@color/design_default_color_primary"
         android:layout_alignParentRight="true"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="500dp"
+        android:layout_marginTop="560dp"
         android:layout_alignParentEnd="true" />
+
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_of_events"
