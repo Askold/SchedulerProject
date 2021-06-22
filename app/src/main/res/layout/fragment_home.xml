@@ -17,8 +17,9 @@
         app:backgroundTint="@color/design_default_color_primary"
         android:layout_alignParentRight="true"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="560dp"
-        android:layout_alignParentEnd="true" />
+        android:layout_marginBottom="20dp"
+        android:layout_alignParentBottom="true"
+         />
 
 
 
@@ -30,7 +31,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginBottom="60dp"
+
         android:layout_marginTop="15dp"/>
 
 </RelativeLayout>

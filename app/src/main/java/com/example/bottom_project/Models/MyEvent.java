@@ -5,7 +5,7 @@ import java.util.Calendar;
 public class MyEvent {
     public String name, place;
     private String date, time;
-    public boolean possible = false;
+    public boolean check = false;
 
     MyEvent(){}
 
@@ -49,10 +49,10 @@ public class MyEvent {
     }
 
     public boolean isPossible() {
-        return possible;
+        return check;
     }
 
     public void setPossible(boolean possible) {
-        this.possible = possible;
+        this.check = possible;
     }
 }

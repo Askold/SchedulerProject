@@ -19,7 +19,6 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginBottom="70dp"
         android:layout_above="@+id/nav_view"/>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -31,7 +30,6 @@
         app:boxCornerRadiusBottomEnd="30dp"
         app:boxCornerRadiusBottomStart="30dp"
         app:boxCornerRadiusTopStart="30dp"
-        android:layout_marginBottom="70dp"
 
 
         >
