@@ -13,11 +13,16 @@ import com.example.bottom_project.Models.MyEvent;
 import com.example.bottom_project.R;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class EventsAdapter extends FirebaseRecyclerAdapter<MyEvent, EventsAdapter.myviewholder> {
 
+    private DatabaseReference databaseRef;
+
     public EventsAdapter(@NonNull FirebaseRecyclerOptions<MyEvent> options) {
         super(options);
+        databaseRef = FirebaseDatabase.getInstance().getReference("yourRefrence");
     }
 
     @Override
@@ -26,7 +31,7 @@ public class EventsAdapter extends FirebaseRecyclerAdapter<MyEvent, EventsAdapte
         holder.time.setText(model.getTime());
         holder.place.setText(model.getPlace());
         holder.date.setText(model.getDate());
-        holder.check.setSelected(false);
+        holder.check.isChecked();
     }
 
     @NonNull
